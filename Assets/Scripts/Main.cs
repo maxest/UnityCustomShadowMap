@@ -8,6 +8,5 @@ public class Main : MonoBehaviour
     void Start()
     {
 		geometryHierarchy.myLight = myLight;
-
 	}
 }
