@@ -38,9 +38,12 @@ public class GeometryHierarchy : MonoBehaviour
 			{
 				Material m = mr.sharedMaterials[j];
 
+				m.SetTexture("_LightShadowMapTexture", myLight.shadowMapRT);
+
 				m.SetVector("_LightPosAndRadius", new Vector4(lightPos.x, lightPos.y, lightPos.z, myLight.radius));
 				m.SetVector("_LightDirAndAngle", new Vector4(lightDir.x, lightDir.y, lightDir.z, myLight.angle));
 				m.SetVector("_LightColor", myLight.CalcColorMulIntensity());
+				m.SetMatrix("_LightViewProjTransform", myLight.GetViewProjTransform());
 			}
 		}
 	}

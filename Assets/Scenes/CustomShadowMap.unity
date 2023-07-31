@@ -178,7 +178,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -262,7 +262,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212837294}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -314,6 +314,7 @@ MonoBehaviour:
   angle: 0.5
   color: {r: 1, g: 1, b: 1, a: 1}
   intensity: 1
+  shadowMapRT: {fileID: 0}
 --- !u!4 &4686047111702698
 Transform:
   m_ObjectHideFlags: 0

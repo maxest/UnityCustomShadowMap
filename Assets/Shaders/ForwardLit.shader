@@ -53,6 +53,8 @@ Shader "CustomShadowMap/ForwardLit"
 				return o;
 			}
 
+			//
+
 			float4 CalcSpotLight(float3 pos, float3 normal, float3 lightPos, float lightRadius, float3 lightDir, float lightAngle, float3 lightColor)
 			{
 				float3 pixelToLight = lightPos - pos;
@@ -71,6 +73,19 @@ Shader "CustomShadowMap/ForwardLit"
 				return float4(atten * NdotL * lightColor, 1.0f);
 			}
 
+			float CalcShadow(Texture2D_float shadowMapTexture, SamplerComparisonState samplershadowMapTexture, float4x4 lightViewProjTransform, float3 pos)
+			{
+				float4 pos_lightSpace = mul(lightViewProjTransform, float4(pos, 1.0f));
+				pos_lightSpace /= pos_lightSpace.w;
+				pos_lightSpace.xy *= 0.5f;
+				pos_lightSpace.xy += 0.5f;
+				pos_lightSpace.z += 0.0025f;
+
+				return UNITY_SAMPLE_SHADOW(shadowMapTexture, float3(pos_lightSpace.xyz));
+			}
+
+			//
+
 			fixed4 frag(v2f i) : SV_Target
 			{
 				float3 pos = i.worldPos.xyz;
@@ -84,6 +99,8 @@ Shader "CustomShadowMap/ForwardLit"
 					_LightDirAndAngle.xyz, _LightDirAndAngle.w,
 					_LightColor.xyz
 				);
+
+				lighting *= CalcShadow(_LightShadowMapTexture, sampler_LightShadowMapTexture, _LightViewProjTransform, pos);
 
 				return lighting * albedo;
 			}
