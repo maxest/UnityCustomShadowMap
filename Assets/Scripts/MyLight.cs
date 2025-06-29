@@ -12,15 +12,15 @@ public class MyLight : MonoBehaviour
 	public RenderTexture shadowMapRT;
 
 	void Start()
-    {
+	{
 		RenderTextureDescriptor rtd = new RenderTextureDescriptor();
 		rtd.width = cShadowMapTextureDim;
 		rtd.height = cShadowMapTextureDim;
 		rtd.volumeDepth = 1;
 		rtd.msaaSamples = 1;
 		rtd.dimension = UnityEngine.Rendering.TextureDimension.Tex2D;
-		rtd.colorFormat = RenderTextureFormat.Depth;
-		rtd.depthStencilFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.D32_SFloat;
+		rtd.colorFormat = RenderTextureFormat.Shadowmap;
+		rtd.depthBufferBits = 32;
 
 		shadowMapRT = new RenderTexture(rtd);
 		shadowMapRT.wrapMode = TextureWrapMode.Clamp;
@@ -29,8 +29,8 @@ public class MyLight : MonoBehaviour
 		GetComponent<Camera>().targetTexture = shadowMapRT;
 	}
 
-    void Update()
-    {
+	void Update()
+	{
 		Camera camera = GetComponent<Camera>();
 		camera.fieldOfView = 2.0f * Mathf.Acos(angle) * Mathf.Rad2Deg;
 

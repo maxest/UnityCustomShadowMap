@@ -5,8 +5,8 @@ public class Main : MonoBehaviour
 	public MyLight myLight;
 	public GeometryHierarchy geometryHierarchy;
 
-    void Start()
-    {
+	void Start()
+	{
 		geometryHierarchy.myLight = myLight;
 	}
 }

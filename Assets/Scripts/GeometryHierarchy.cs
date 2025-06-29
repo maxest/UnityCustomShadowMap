@@ -5,8 +5,8 @@ public class GeometryHierarchy : MonoBehaviour
 	public MyLight myLight;
 
 	void Start()
-    {
-        for (int i = 0; i < gameObject.transform.childCount; i++)
+	{
+		for (int i = 0; i < gameObject.transform.childCount; i++)
 		{
 			Transform t = gameObject.transform.GetChild(i);
 			MeshRenderer mr = t.GetComponent<MeshRenderer>();
@@ -22,7 +22,7 @@ public class GeometryHierarchy : MonoBehaviour
 			}
 			mr.sharedMaterials = newMats;
 		}
-    }
+	}
 
 	void Update()
 	{
